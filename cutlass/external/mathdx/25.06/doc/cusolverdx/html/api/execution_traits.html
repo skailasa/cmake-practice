@@ -1,0 +1,775 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Execution Traits &#8212; cuSOLVERDx</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/nvidia-sphinx-theme.css?v=df3ac72c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=1be0d999"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/execution_traits';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.nvidia.com/cuda/cusolverdx/_static/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.2.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <link rel="icon" href="../_static/nvidia.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Other Traits" href="other_traits.html" />
+    <link rel="prev" title="Description Traits" href="description_traits.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.0" />
+
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="cuSOLVERDx - Home"/>
+    <img src="../_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark pst-js-only" alt="cuSOLVERDx - Home"/>
+  
+  
+    <p class="title logo__title">cuSOLVERDx</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+
+
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="cuSOLVERDx - Home"/>
+    <img src="../_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark pst-js-only" alt="cuSOLVERDx - Home"/>
+  
+  
+    <p class="title logo__title">cuSOLVERDx</p>
+  
+</a>
+
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+
+
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Table of Contents">
+  <p class="bd-links__title" role="heading" aria-level="1">Table of Contents</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Documentation Home</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started/requirement.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../get_started/functionality.html">Functionality</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/potrf.html">Cholesky POTRF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/potrs.html">Cholesky POTRS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/posv.html">Cholesky POSV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/getrf.html">LU GETRF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/getrs.html">LU GETRS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/gesv.html">LU GESV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/geqrf.html">QR GEQRF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/unmqr.html">QR UNMQR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/gelqf.html">LQ GELQF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/unmlq.html">LQ UNMLQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/gels.html">Least Squares GELS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/trsm.html">Triangular Solve TRSM</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/introduction.html">Using cuSolverDx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/performance.html">Achieving High Performance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="operators.html">Operators</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="description_ops.html">Description Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="execution_ops.html">Execution Operators</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="traits.html">Traits</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="description_traits.html">Description Traits</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Execution Traits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="other_traits.html">Other Traits</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="methods.html">Execution Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other_methods.html">Other Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other_shared.html">Shared Memory Management</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../python_bindings.html">Python Bindings</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/index.html">Examples List</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/intro_example.html">Introduction Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/potr_example.html">Cholesky Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lu_example.html">LU Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/qr_example.html">QR and GELS Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/nvrtc_example.html">NVRTC Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/performance_example.html">Performance Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/advanced_example.html">Advanced Examples</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/NVIDIA/CUDALibrarySamples/tree/master/MathDx/cuSolverDx">GitHub Samples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">MathDx</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/cusolverdx-downloads">cuSolverDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/cublasdx-downloads">cuBLASDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/cufftdx-downloads">cuFFTDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/curanddx-downloads">cuRANDDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/nvcompdx-downloads">nvCOMPDx</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="traits.html" class="nav-link">Traits</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Execution Traits</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <span class="target" id="execution-traits-label"></span><section id="execution-traits">
+<h1>Execution Traits<a class="headerlink" href="#execution-traits" title="Link to this heading">#</a></h1>
+<p>Execution traits can be retrieved directly from a Solver function descriptor, if the description is <a class="reference internal" href="description_traits.html#issolvercompleteexecution-trait-label"><span class="std std-ref">complete execution</span></a>.
+The available execution traits may depend on the operator used to build the descriptor. Right now, <a class="reference internal" href="execution_ops.html#block-operator-label"><span class="std std-ref">Block Operator</span></a> is the only available execution operator.</p>
+<section id="block-traits">
+<span id="block-execution-traits-label"></span><h2>Block Traits<a class="headerlink" href="#block-traits" title="Link to this heading">#</a></h2>
+<p>Block traits can be retrieved from descriptors built with <a class="reference internal" href="execution_ops.html#block-operator-label"><span class="std std-ref">Block Operator</span></a>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Trait</p></th>
+<th class="head"><p>Default value</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#datatype-block-trait-label"><code class="code highlight cpp docutils literal highlight-cpp"><span class="n">Description</span><span class="o">::&lt;</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="o">/</span><span class="n">x</span><span class="o">&gt;</span><span class="n">_data_type</span></code></a></p></td>
+<td><p><code class="code highlight cpp docutils literal highlight-cpp"><span class="kt">float</span></code></p></td>
+<td><p>Type of input and output data <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">A</span></code>, <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">X</span></code>, <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">B</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ld-block-trait-label"><code class="code highlight cpp docutils literal highlight-cpp"><span class="n">Description</span><span class="o">::</span><span class="n">ld</span><span class="o">&lt;</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="o">&gt;</span></code></a></p></td>
+<td><p>Determined by the problem size or set via <a class="reference internal" href="description_ops.html#leadingdimension-operator-label"><span class="std std-ref">LeadingDimension Operator</span></a></p></td>
+<td><p>Leading dimensions of matrices <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">A</span></code> and <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">B</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#matrixsize-block-trait-label"><code class="code highlight cpp docutils literal highlight-cpp"><span class="n">Description</span><span class="o">::&lt;</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="o">&gt;</span><span class="n">_size</span></code></a></p></td>
+<td><p>Determined by the problem size and set leading dimensions.</p></td>
+<td><p>Number of elements in <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">A</span></code> and <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">B</span></code> matrices. Includes padding determined by set leading dimensions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#arrangement-block-trait-label"><code class="code highlight cpp docutils literal highlight-cpp"><span class="n">Description</span><span class="o">::</span><span class="n">arrangement</span></code></a></p></td>
+<td><p>Set via <a class="reference internal" href="description_ops.html#arrangement-operator-label"><span class="std std-ref">Arrangement Operator</span></a></p></td>
+<td><p>Memory layout for <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">A</span></code> and <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">B</span></code> matrices.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#transpose-block-trait-label"><code class="code highlight cpp docutils literal highlight-cpp"><span class="n">Description</span><span class="o">::</span><span class="n">transpose</span></code></a></p></td>
+<td><p>Set via <a class="reference internal" href="description_ops.html#transposemode-operator-label"><span class="std std-ref">TransposeMode Operator</span></a></p></td>
+<td><p>Transpose flag for <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">A</span></code> matrix.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#fillmode-block-trait-label"><code class="code highlight cpp docutils literal highlight-cpp"><span class="n">Description</span><span class="o">::</span><span class="n">fill_mode</span></code></a></p></td>
+<td><p>Set via <a class="reference internal" href="description_ops.html#fillmode-operator-label"><span class="std std-ref">FillMode Operator</span></a></p></td>
+<td><p>Fill mode for symmetric or Hermitian matrix <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">A</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#side-block-trait-label"><code class="code highlight cpp docutils literal highlight-cpp"><span class="n">Description</span><span class="o">::</span><span class="n">side</span></code></a></p></td>
+<td><p>Set via <a class="reference internal" href="description_ops.html#sidemode-operator-label"><span class="std std-ref">Side Operator</span></a></p></td>
+<td><p>Side of a matrix multiplication.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#diag-block-trait-label"><code class="code highlight cpp docutils literal highlight-cpp"><span class="n">Description</span><span class="o">::</span><span class="n">diag</span></code></a></p></td>
+<td><p>Set via <a class="reference internal" href="description_ops.html#diagmode-operator-label"><span class="std std-ref">Diag Operator</span></a></p></td>
+<td><p>Whether the diagonal elements of matrix <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">A</span></code> are ones or not for <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">trsm</span></code> functions.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sharedmemory-block-trait-label"><code class="code highlight cpp docutils literal highlight-cpp"><span class="n">Description</span><span class="o">::</span><span class="n">shared_memory_size</span></code></a></p></td>
+<td><p>Determined by the problem size, leading dimensions, batches per block and function type.</p></td>
+<td><p>The size of the shared memory in bytes required to allocate input and output matrices.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#blockdim-block-trait-label"><code class="code highlight cpp docutils literal highlight-cpp"><span class="n">Description</span><span class="o">::</span><span class="n">block_dim</span></code></a></p></td>
+<td><p>Base on heuristic or set via <a class="reference internal" href="execution_ops.html#blockdim-operator-label"><span class="std std-ref">BlockDim Operator</span></a></p></td>
+<td><p>Value of type <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">dim3</span></code> representing number of threads computing Solver function. Set or recommended CUDA block dimensions.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Block traits can be retrieved from descriptors built with <a class="reference internal" href="execution_ops.html#block-operator-label"><span class="std std-ref">Block Operator</span></a>.</p>
+<section id="data-type-trait">
+<span id="datatype-block-trait-label"></span><h3>Data Type Trait<a class="headerlink" href="#data-type-trait" title="Link to this heading">#</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Solver</span><span class="o">::</span><span class="n">a_data_type</span>
+<span class="n">Solver</span><span class="o">::</span><span class="n">b_data_type</span>
+<span class="n">Solver</span><span class="o">::</span><span class="n">x_data_type</span>
+</pre></div>
+</div>
+<p>Data type for matrices <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">A</span></code>, <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">X</span></code>, and <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">B</span></code>. Determined by <a class="reference internal" href="description_ops.html#precision-operator-label"><span class="std std-ref">Precision Operator</span></a> and <a class="reference internal" href="description_ops.html#type-operator-label"><span class="std std-ref">Type Operator</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>cuSolverDx does not support mixed data type currently, so matrices <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">A</span></code>, <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">B</span></code> and <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">X</span></code> are required to be the same data type. The limitation may be lifted in the future release.</p>
+</div>
+</section>
+<section id="leading-dimension-trait">
+<span id="ld-block-trait-label"></span><h3>Leading Dimension Trait<a class="headerlink" href="#leading-dimension-trait" title="Link to this heading">#</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// unsigned int</span>
+<span class="n">Solver</span><span class="o">::</span><span class="n">lda</span>
+<span class="n">Solver</span><span class="o">::</span><span class="n">ldb</span>
+</pre></div>
+</div>
+<p>Leading dimensions of matrices <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">A</span></code> and <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">B</span></code>. See <a class="reference internal" href="description_ops.html#leadingdimension-operator-label"><span class="std std-ref">LeadingDimension Operator</span></a>.</p>
+</section>
+<section id="matrix-size-trait">
+<span id="matrixsize-block-trait-label"></span><h3>Matrix Size Trait<a class="headerlink" href="#matrix-size-trait" title="Link to this heading">#</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// unsigned int</span>
+<span class="n">Solver</span><span class="o">::</span><span class="n">a_size</span>
+<span class="n">Solver</span><span class="o">::</span><span class="n">b_size</span>
+</pre></div>
+</div>
+<p>Number of elements in <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">A</span></code> and <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">B</span></code> matrices, determined by the padding determined by the leading dimensions and the arrangement operator.</p>
+<p>See <a class="reference internal" href="description_ops.html#arrangement-operator-label"><span class="std std-ref">Arrangement Operator</span></a> and <a class="reference internal" href="description_ops.html#leadingdimension-operator-label"><span class="std std-ref">LeadingDimension Operator</span></a>.</p>
+</section>
+<section id="arrangement-trait">
+<span id="arrangement-block-trait-label"></span><h3>Arrangement Trait<a class="headerlink" href="#arrangement-trait" title="Link to this heading">#</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// cusolverdx::arrangement</span>
+<span class="n">Solver</span><span class="o">::</span><span class="n">a_arrangement</span>
+<span class="n">Solver</span><span class="o">::</span><span class="n">b_arrangement</span>
+</pre></div>
+</div>
+<p>Number of elements in <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">A</span></code> and <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">B</span></code> matrices. See <a class="reference internal" href="description_ops.html#arrangement-operator-label"><span class="std std-ref">Arrangement Operator</span></a>.</p>
+</section>
+<section id="transpose-trait">
+<span id="transpose-block-trait-label"></span><h3>Transpose Trait<a class="headerlink" href="#transpose-trait" title="Link to this heading">#</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// cusolverdx::transpose</span>
+<span class="n">Solver</span><span class="o">::</span><span class="n">transpose</span>
+</pre></div>
+</div>
+<p>Transpose mode for <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">A</span></code> matrix. See <a class="reference internal" href="description_ops.html#transposemode-operator-label"><span class="std std-ref">TransposeMode Operator</span></a>.</p>
+</section>
+<section id="side-trait">
+<span id="side-block-trait-label"></span><h3>Side Trait<a class="headerlink" href="#side-trait" title="Link to this heading">#</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// cusolverdx::side</span>
+<span class="n">Solver</span><span class="o">::</span><span class="n">side</span>
+</pre></div>
+</div>
+<p>Side of a matrix multiplication. See <a class="reference internal" href="description_ops.html#sidemode-operator-label"><span class="std std-ref">Side Operator</span></a>.</p>
+</section>
+<section id="diag-trait">
+<span id="diag-block-trait-label"></span><h3>Diag Trait<a class="headerlink" href="#diag-trait" title="Link to this heading">#</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// cusolverdx::diag</span>
+<span class="n">Solver</span><span class="o">::</span><span class="n">diag</span>
+</pre></div>
+</div>
+<p>Indicates whether the diagonal elements of matrix <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">A</span></code> are ones or not for <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">trsm</span></code> functions. See <a class="reference internal" href="description_ops.html#diagmode-operator-label"><span class="std std-ref">Diag Operator</span></a>.</p>
+</section>
+<section id="fill-mode-trait">
+<span id="fillmode-block-trait-label"></span><h3>Fill Mode Trait<a class="headerlink" href="#fill-mode-trait" title="Link to this heading">#</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// cusolverdx::fill_mode</span>
+<span class="n">Solver</span><span class="o">::</span><span class="n">fill_mode</span>
+</pre></div>
+</div>
+<p>Fill Mode of <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">A</span></code> matrix. See <a class="reference internal" href="description_ops.html#fillmode-operator-label"><span class="std std-ref">FillMode Operator</span></a>.</p>
+</section>
+<section id="batches-per-block-trait">
+<span id="bpb-block-trait-label"></span><h3>Batches Per Block Trait<a class="headerlink" href="#batches-per-block-trait" title="Link to this heading">#</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// unsigned int</span>
+<span class="n">Solver</span><span class="o">::</span><span class="n">batches_per_block</span>
+</pre></div>
+</div>
+<p>Number of batches to execute in parallel in a single CUDA thread block. See <a class="reference internal" href="description_ops.html#bpb-operator-label"><span class="std std-ref">BatchesPerBlock Operator</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If <a class="reference internal" href="description_ops.html#bpb-operator-label"><span class="std std-ref">BatchesPerBlock</span></a> operator is not used in a <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">Solver</span></code> description, the default value of <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">Solver</span><span class="o">::</span><span class="n">batches_per_block</span></code> is 1, not <a class="reference internal" href="other_traits.html#suggestedbpb-block-trait-label"><span class="std std-ref">Solver::suggested_batches_per_block</span></a>.</p>
+</div>
+</section>
+<section id="shared-memory-size-trait">
+<span id="sharedmemory-block-trait-label"></span><h3>Shared Memory Size Trait<a class="headerlink" href="#shared-memory-size-trait" title="Link to this heading">#</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// unsigned int</span>
+<span class="n">Solver</span><span class="o">::</span><span class="n">shared_memory_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Solver</span><span class="o">::</span><span class="n">get_shared_memory_size</span><span class="p">()</span>
+
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Solver</span><span class="o">::</span><span class="n">get_shared_memory_size</span><span class="p">()</span>
+<span class="c1">// Calculates shared memory size for dynamic leading dimensions</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Solver</span><span class="o">::</span><span class="n">get_shared_memory_size</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">lda</span><span class="p">,</span>
+<span class="w">                                            </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ldb</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The size of the shared memory in bytes required to allocate input and output matrices, and perform computations.</p>
+<p>The value is determined by <a class="reference internal" href="description_ops.html#precision-operator-label"><span class="std std-ref">Precision Operator</span></a>, <a class="reference internal" href="description_ops.html#type-operator-label"><span class="std std-ref">Type Operator</span></a>, <a class="reference internal" href="description_ops.html#size-operator-label"><span class="std std-ref">Size Operator</span></a>, <a class="reference internal" href="description_ops.html#bpb-operator-label"><span class="std std-ref">BatchesPerBlock Operator</span></a>, and <a class="reference internal" href="description_ops.html#function-operator-label"><span class="std std-ref">Function Operator</span></a>.</p>
+</section>
+<section id="block-dim-trait">
+<span id="blockdim-block-trait-label"></span><h3>Block Dim Trait<a class="headerlink" href="#block-dim-trait" title="Link to this heading">#</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// dim3</span>
+<span class="n">Solver</span><span class="o">::</span><span class="n">block_dim</span>
+<span class="n">cusolverdx</span><span class="o">::</span><span class="n">block_dim</span><span class="o">&lt;</span><span class="n">Solver</span><span class="o">&gt;::</span><span class="n">value</span>
+<span class="n">cusolverdx</span><span class="o">::</span><span class="n">block_dim_v</span><span class="o">&lt;</span><span class="n">Sovler</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Value of type <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">dim3</span></code> representing number of threads that will be used to perform requested Solver function. See <a class="reference internal" href="execution_ops.html#blockdim-operator-label"><span class="std std-ref">BlockDim Operator</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If <a class="reference internal" href="execution_ops.html#blockdim-operator-label"><span class="std std-ref">BlockDim</span></a> is not used in <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">Solver</span></code> description, the default value of <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">Solver</span><span class="o">::</span><span class="n">block_dim</span></code> is equal to <a class="reference internal" href="other_traits.html#suggestedblockdim-block-trait-label"><span class="std std-ref">Solver::suggested_block_dim</span></a>.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="description_traits.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Description Traits</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="other_traits.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Other Traits</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+
+
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-traits">Block Traits</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-type-trait">Data Type Trait</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leading-dimension-trait">Leading Dimension Trait</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-size-trait">Matrix Size Trait</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arrangement-trait">Arrangement Trait</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transpose-trait">Transpose Trait</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#side-trait">Side Trait</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diag-trait">Diag Trait</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fill-mode-trait">Fill Mode Trait</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#batches-per-block-trait">Batches Per Block Trait</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shared-memory-size-trait">Shared Memory Size Trait</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#block-dim-trait">Block Dim Trait</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+<a class="footer-brand logo" href="https://www.nvidia.com">
+  <img src="../_static/nvidia-logo-horiz-rgb-1c-blk-for-screen.svg" class="logo__image only-light" alt="NVIDIA"/>
+  <img src="../_static/nvidia-logo-horiz-rgb-1c-wht-for-screen.svg" class="logo__image only-dark" alt="NVIDIA"/>
+</a></div>
+      
+        <div class="footer-item">
+
+<div class="footer-links">
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/privacy-policy/">Privacy Policy</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/privacy-center/">Manage My Privacy</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/preferences/start/">Do Not Sell or Share My Data</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/terms-of-service/">Terms of Service</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/accessibility/">Accessibility</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/company-policies/">Corporate Policies</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/product-security/">Product Security</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/contact/">Contact</a>
+  
+  
+  
+</div>
+</div>
+      
+        <div class="footer-item">
+
+
+
+
+  <p class="copyright">
+    
+      Copyright © 2024-2025, NVIDIA Corporation &amp; Affiliates. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>
