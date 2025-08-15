@@ -7,7 +7,6 @@ function(find_spack_package name out_path)
   set(${out_path} "${_path}" PARENT_SCOPE)
 endfunction()
 
-
 project(CutlassCublasDx LANGUAGES CXX CUDA)
 include(CheckLanguage)
 check_language(CUDA)

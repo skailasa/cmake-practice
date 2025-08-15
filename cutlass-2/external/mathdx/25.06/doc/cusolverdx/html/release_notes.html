@@ -1,0 +1,684 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Release Notes &#8212; cuSOLVERDx</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/nvidia-sphinx-theme.css?v=df3ac72c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=1be0d999"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'release_notes';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.nvidia.com/cuda/cusolverdx/_static/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.2.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <link rel="icon" href="_static/nvidia.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Software License Agreement" href="license.html" />
+    <link rel="prev" title="Cholesky Factorization For a Large Matrix Using Blocked Algorithm" href="examples/advanced_example.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.0" />
+
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="cuSOLVERDx - Home"/>
+    <img src="_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark pst-js-only" alt="cuSOLVERDx - Home"/>
+  
+  
+    <p class="title logo__title">cuSOLVERDx</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+
+
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="cuSOLVERDx - Home"/>
+    <img src="_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark pst-js-only" alt="cuSOLVERDx - Home"/>
+  
+  
+    <p class="title logo__title">cuSOLVERDx</p>
+  
+</a>
+
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+
+
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Table of Contents">
+  <p class="bd-links__title" role="heading" aria-level="1">Table of Contents</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Documentation Home</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="get_started/requirement.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_started/installation.html">Installation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="get_started/functionality.html">Functionality</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="get_started/potrf.html">Cholesky POTRF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/potrs.html">Cholesky POTRS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/posv.html">Cholesky POSV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/getrf.html">LU GETRF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/getrs.html">LU GETRS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/gesv.html">LU GESV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/geqrf.html">QR GEQRF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/unmqr.html">QR UNMQR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/gelqf.html">LQ GELQF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/unmlq.html">LQ UNMLQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/gels.html">Least Squares GELS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/trsm.html">Triangular Solve TRSM</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="get_started/introduction.html">Using cuSolverDx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_started/performance.html">Achieving High Performance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="api/operators.html">Operators</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/description_ops.html">Description Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/execution_ops.html">Execution Operators</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api/traits.html">Traits</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/description_traits.html">Description Traits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/execution_traits.html">Execution Traits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/other_traits.html">Other Traits</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="api/methods.html">Execution Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/other_methods.html">Other Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/other_shared.html">Shared Memory Management</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python_bindings.html">Python Bindings</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="examples/index.html">Examples List</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/intro_example.html">Introduction Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/potr_example.html">Cholesky Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/lu_example.html">LU Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/qr_example.html">QR and GELS Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/nvrtc_example.html">NVRTC Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/performance_example.html">Performance Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/advanced_example.html">Advanced Examples</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Release notes</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/NVIDIA/CUDALibrarySamples/tree/master/MathDx/cuSolverDx">GitHub Samples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">MathDx</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/cusolverdx-downloads">cuSolverDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/cublasdx-downloads">cuBLASDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/cufftdx-downloads">cuFFTDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/curanddx-downloads">cuRANDDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/nvcompdx-downloads">nvCOMPDx</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Release Notes</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="release-notes">
+<span id="id1"></span><h1>Release Notes<a class="headerlink" href="#release-notes" title="Link to this heading">#</a></h1>
+<p>This section lists significant changes, new features, performance improvements, and various issues for each release of cuSolverDx.
+Unless noted, listed issues should not impact functionality. When functionality is impacted, we offer a work-around to avoid the issue (if available).</p>
+<section id="id2">
+<h2>0.2.0<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="new-features">
+<h3>New Features<a class="headerlink" href="#new-features" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Support for batched or non-batched <a class="reference internal" href="get_started/getrf.html#getrf"><span class="std std-ref">LU decomposition with partial pivoting</span></a>.</p></li>
+<li><p>Support for batched or non-batched <a class="reference internal" href="get_started/getrs.html#getrs"><span class="std std-ref">linear system solves with multiple right-hand sides using LU factors with partial pivoting</span></a>.</p></li>
+<li><p>Support for batched or non-batched <a class="reference internal" href="get_started/geqrf.html#geqrf"><span class="std std-ref">QR factorization</span></a>.</p></li>
+<li><p>Support for batched or non-batched <a class="reference internal" href="get_started/gelqf.html#gelqf"><span class="std std-ref">LQ factorization</span></a>.</p></li>
+<li><p>Support for batched or non-batched <a class="reference internal" href="get_started/unmqr.html#unmqr"><span class="std std-ref">Multiplication of Q from QR factorization</span></a>.</p></li>
+<li><p>Support for batched or non-batched <a class="reference internal" href="get_started/unmlq.html#unmlq"><span class="std std-ref">Multiplication of Q from LQ factorization</span></a>.</p></li>
+<li><p>Support for batched or non-batched <a class="reference internal" href="get_started/gels.html#gels"><span class="std std-ref">Least squares solves</span></a>.</p></li>
+<li><p>Support for batched or non-batched <a class="reference internal" href="get_started/trsm.html#trsm"><span class="std std-ref">Triangular solves</span></a>.</p></li>
+<li><p>Support for Blackwell architectures <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">sm_100</span></code>, <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">sm_101</span></code>, <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">sm_120</span></code>; experimental support for <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">sm_103</span></code>, <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">sm_121</span></code>.</p></li>
+<li><p>Deprecation of support for NVIDIA Xavier Tegra SoC (<code class="code highlight cpp docutils literal highlight-cpp"><span class="n">SM</span><span class="o">&lt;</span><span class="mi">720</span><span class="o">&gt;</span></code> or <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">sm_72</span></code>).</p></li>
+</ul>
+</section>
+<section id="breaking-changes">
+<h3>Breaking Changes<a class="headerlink" href="#breaking-changes" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>cuSolverDx 0.2.0 requires CUDA Toolkit 12.6.3 or newer.</p></li>
+<li><p>cuSolverDx 0.2.0 requires <a class="reference internal" href="api/description_ops.html#fillmode-operator-label"><span class="std std-ref">FillMode operator</span></a> to be specified explicitly for Cholesky functions (potrf, potrs, posv), instead of using the default value if not specified.</p></li>
+</ul>
+</section>
+<section id="known-issues">
+<h3>Known Issues<a class="headerlink" href="#known-issues" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>CUDA 12.8.0 and 12.9.0 could miscompile kernels using <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">gesv_no_pivot</span></code> function with high register pressure when all of the following conditions are met:</p>
+<ul class="simple">
+<li><p>SM is set to 1200 (<code class="code highlight cpp docutils literal highlight-cpp"><span class="n">SM120</span></code>), and</p></li>
+<li><p>Type is set to <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">type</span><span class="o">::</span><span class="n">real</span></code>.</p></li>
+</ul>
+<p>The code corruptions may manifest as intermittent incorrect results.</p>
+<p>To highlight this issue cuSolverDx 0.2.0 will <strong>overprotectively hard fail</strong> if these conditions are met.</p>
+<p>If you are using cuSolverDx, and this happens to your code, you can:</p>
+<ul class="simple">
+<li><p>Define the <code class="docutils literal notranslate"><span class="pre">CUSOLVERDX_IGNORE_NVBUG_5288270_ASSERT</span></code> macro to ignore these assertions and verify correctness of the results</p></li>
+<li><p>If the case is indeed affected by the bug, adding the <code class="docutils literal notranslate"><span class="pre">-Xptxas</span> <span class="pre">-O0</span></code> flag to the compilation command will limit PTX optimization phase and produce correct binary, although potentially slower</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id3">
+<h2>0.1.0<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>The first early access (EA) release of cuSolverDx library.</p>
+<section id="id4">
+<h3>New Features<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Support for batched or non-batched <a class="reference internal" href="get_started/potrf.html#potrf"><span class="std std-ref">Cholesky decomposition</span></a>.</p></li>
+<li><p>Support for batched or non-batched <a class="reference internal" href="get_started/potrs.html#potrs"><span class="std std-ref">linear system solves with multiple right-hand sides</span></a> using Cholesky factors.</p></li>
+<li><p>Support for batched or non-batched <a class="reference internal" href="get_started/getrf.html#getrf"><span class="std std-ref">LU decomposition without pivoting</span></a>.</p></li>
+<li><p>Support for batched or non-batched <a class="reference internal" href="get_started/getrs.html#getrs"><span class="std std-ref">linear system solves with multiple right-hand sides</span></a> using LU factors without pivoting.</p></li>
+<li><p>Support for SM70 - SM90 CUDA architectures.</p></li>
+<li><p>Multiple <a class="reference internal" href="examples/index.html#examples"><span class="std std-ref">examples</span></a> included.</p></li>
+</ul>
+</section>
+<section id="id5">
+<h3>Known Issues<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>For CUDA Toolkits older than 12.1 Update 1 when using NVRTC and nvJitLink to perform runtime compilation of kernels that use cuSolverDx
+it is required to use fatbin file <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">libcusolverdx</span><span class="p">.</span><span class="n">fatbin</span></code> when linking instead of <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">libcusolverdx</span><span class="p">.</span><span class="n">a</span></code>. Path to the fatbin library file
+is defined in <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">cusolverdx_FATBIN</span></code> cmake variable.</p></li>
+<li><p>NVCC compiler in CUDA Toolkit from 12.2 to 12.4 reports incorrect compilation error when <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">value_type</span></code> type
+of a solver description type is used. The affected code with workarounds are presented below. The issue is fixed in CTK 12.5 and newer.</p>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Solver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span><span class="n">Size</span><span class="o">&lt;</span><span class="mi">32</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="w">                </span><span class="o">+</span><span class="w"> </span><span class="n">Precision</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="w">                </span><span class="o">+</span><span class="w"> </span><span class="n">Type</span><span class="o">&lt;</span><span class="n">type</span><span class="o">::</span><span class="n">complex</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="w">                </span><span class="o">+</span><span class="w"> </span><span class="n">Function</span><span class="o">&lt;</span><span class="n">function</span><span class="o">::</span><span class="n">potrf</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="w">                </span><span class="o">+</span><span class="w"> </span><span class="n">SM</span><span class="o">&lt;</span><span class="mi">800</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="w">                </span><span class="o">+</span><span class="w"> </span><span class="n">Block</span><span class="p">());</span>
+<span class="k">using</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">Solver</span><span class="o">::</span><span class="n">value_type</span><span class="p">;</span><span class="w"> </span><span class="c1">// compilation error</span>
+
+<span class="c1">// Workaround #1</span>
+<span class="k">using</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">decltype</span><span class="p">(</span><span class="n">Solver</span><span class="p">())</span><span class="o">::</span><span class="n">value_type</span><span class="p">;</span>
+
+<span class="c1">// Workaround #2 (used in cuSolverDx examples)</span>
+<span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="n">value_type_t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">::</span><span class="n">value_type</span><span class="p">;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value_type_t</span><span class="o">&lt;</span><span class="n">Solver</span><span class="o">&gt;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="examples/advanced_example.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Cholesky Factorization For a Large Matrix Using Blocked Algorithm</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="license.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Software License Agreement</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+
+
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">0.2.0</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-features">New Features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#breaking-changes">Breaking Changes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#known-issues">Known Issues</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">0.1.0</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">New Features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Known Issues</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+<a class="footer-brand logo" href="https://www.nvidia.com">
+  <img src="_static/nvidia-logo-horiz-rgb-1c-blk-for-screen.svg" class="logo__image only-light" alt="NVIDIA"/>
+  <img src="_static/nvidia-logo-horiz-rgb-1c-wht-for-screen.svg" class="logo__image only-dark" alt="NVIDIA"/>
+</a></div>
+      
+        <div class="footer-item">
+
+<div class="footer-links">
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/privacy-policy/">Privacy Policy</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/privacy-center/">Manage My Privacy</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/preferences/start/">Do Not Sell or Share My Data</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/terms-of-service/">Terms of Service</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/accessibility/">Accessibility</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/company-policies/">Corporate Policies</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/product-security/">Product Security</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/contact/">Contact</a>
+  
+  
+  
+</div>
+</div>
+      
+        <div class="footer-item">
+
+
+
+
+  <p class="copyright">
+    
+      Copyright © 2024-2025, NVIDIA Corporation &amp; Affiliates. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

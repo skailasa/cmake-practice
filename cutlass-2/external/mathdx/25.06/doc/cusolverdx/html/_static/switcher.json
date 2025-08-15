@@ -1,0 +1,12 @@
+[
+    {
+        "name": "0.2.0 (current release)",
+        "version": "0.2.0",
+        "url": "https://docs.nvidia.com/cuda/cusolverdx/"
+    },
+    {
+        "name": "0.1.0",
+        "version": "0.1.0",
+        "url": "https://docs.nvidia.com/cuda/cusolverdx/0.1.0/"
+    }
+]

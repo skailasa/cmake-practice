@@ -24,3 +24,4 @@ endif()
 if (USE_MYMATH)
     target_link_libraries(MathFunctions PRIVATE SqrtLibrary)
 endif()
+
